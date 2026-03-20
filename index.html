@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOYOYU — Photography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;
+  --bg-elevated:#111;
+  --bg-card:#0f0f0f;
+  --text:#e8e4df;
+  --text-muted:#7a756e;
+  --accent:#c8a87c;
+  --accent-dim:#8a7455;
+  --font-display:'Cormorant Garamond',serif;
+  --font-body:'DM Mono',monospace;
+  --font-cjk:'Noto Sans TC',sans-serif;
+  --grain:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:300;line-height:1.6;min-height:100vh}
+body::after{content:'';position:fixed;inset:0;background:var(--grain);pointer-events:none;z-index:9999}
+::selection{background:var(--accent);color:var(--bg)}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem 3rem;
+  background:transparent;
+  backdrop-filter:blur(4px);
+  transition:all 0.4s ease;
+}
+nav.scrolled{padding:1rem 3rem;background:rgba(10,10,10,0.95)}
+.logo{font-family:var(--font-display);font-size:1.6rem;font-weight:300;letter-spacing:0.4em;color:var(--text);text-decoration:none;cursor:pointer}
+.logo span{color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  color:rgba(232,228,223,0.6);text-decoration:none;font-size:0.7rem;
+  letter-spacing:0.15em;text-transform:uppercase;transition:color 0.3s;
+  position:relative;cursor:pointer;
+}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s ease}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-links a.active{color:var(--accent)}
+.nav-links a.active::after{width:100%}
+.lang-toggle{font-size:0.65rem;letter-spacing:0.1em;color:var(--text-muted);background:none;border:1px solid var(--text-muted);padding:0.3rem 0.7rem;cursor:pointer;transition:all 0.3s;font-family:var(--font-body)}
+.lang-toggle:hover{color:var(--accent);border-color:var(--accent)}
+
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:200}
+.hamburger span{display:block;width:22px;height:1px;background:var(--text);transition:all 0.3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,10,10,0.98);flex-direction:column;justify-content:center;align-items:center;gap:2rem;z-index:150}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--text);text-decoration:none;font-family:var(--font-display);font-size:2rem;font-weight:300;letter-spacing:0.1em;opacity:0;animation:fadeUp 0.5s forwards;cursor:pointer}
+.mobile-menu a:nth-child(2){animation-delay:0.05s}.mobile-menu a:nth-child(3){animation-delay:0.1s}.mobile-menu a:nth-child(4){animation-delay:0.15s}.mobile-menu a:nth-child(5){animation-delay:0.2s}.mobile-menu a:nth-child(6){animation-delay:0.25s}.mobile-menu a:nth-child(7){animation-delay:0.3s}.mobile-menu a:nth-child(8){animation-delay:0.35s}.mobile-menu a:nth-child(9){animation-delay:0.4s}.mobile-menu a:nth-child(10){animation-delay:0.45s}
+
+/* ─── PAGES ─── */
+.page{display:none;min-height:100vh}
+.page.active{display:block}
+
+/* ─── HOME / HERO ─── */
+.hero{
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-end;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  /* Replace with your own hero image */
+  background:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80') center/cover no-repeat;
+  filter:brightness(0.35) contrast(1.1);
+  transform:scale(1.05);
+  transition:transform 8s ease;
+}
+.hero:hover .hero-bg{transform:scale(1)}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,10,10,0.95) 0%,rgba(10,10,10,0.3) 40%,transparent 100%);
+  z-index:1;
+}
+.hero-content{
+  position:relative;z-index:2;
+  padding:0 3rem 5rem;
+  max-width:800px;
+}
+.hero h1{
+  font-family:var(--font-display);
+  font-size:clamp(3.5rem,9vw,8rem);
+  font-weight:300;line-height:0.9;
+  letter-spacing:-0.02em;
+  margin-bottom:1.5rem;
+}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-line{width:60px;height:1px;background:var(--accent-dim);margin:2rem 0}
+.hero-sub{font-size:0.75rem;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase}
+.scroll-cta{
+  position:absolute;bottom:2rem;right:3rem;
+  writing-mode:vertical-rl;font-size:0.6rem;
+  letter-spacing:0.3em;color:var(--text-muted);
+  text-transform:uppercase;z-index:2;
+  animation:float 3s ease-in-out infinite;
+}
+.scroll-cta::after{content:'';display:block;width:1px;height:40px;background:linear-gradient(to bottom,var(--accent-dim),transparent);margin-top:0.5rem;margin-left:50%}
+
+/* ─── ABOUT SECTION (HOME) ─── */
+.home-about{padding:8rem 3rem;max-width:1200px;margin:0 auto}
+.home-about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6rem;
+  align-items:center;
+}
+.home-about-text h2{
+  font-family:var(--font-display);
+  font-size:clamp(2rem,4vw,3.5rem);
+  font-weight:300;margin-bottom:2rem;
+}
+.home-about-text p{font-size:0.85rem;color:var(--text-muted);line-height:1.9;margin-bottom:1.5rem}
+.home-about-portrait{
+  aspect-ratio:3/4;
+  background:var(--bg-elevated);
+  border-radius:2px;overflow:hidden;position:relative;
+}
+.home-about-portrait::after{content:'';position:absolute;inset:0;border:1px solid rgba(200,168,124,0.12);border-radius:2px;pointer-events:none}
+.home-about-portrait img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%)}
+
+.stat-row{display:flex;gap:3rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.06)}
+.stat-num{font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--accent)}
+.stat-label{font-size:0.6rem;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;margin-top:0.3rem}
+
+/* ─── SERVICES PREVIEW (HOME) ─── */
+.services-preview{padding:0 3rem 8rem;max-width:1200px;margin:0 auto}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.service-card{
+  background:var(--bg-card);
+  border:1px solid rgba(255,255,255,0.04);
+  border-radius:3px;
+  padding:2.5rem 2rem;
+  cursor:pointer;
+  transition:all 0.4s ease;
+  position:relative;
+  overflow:hidden;
+}
+.service-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:2px;background:var(--accent);
+  transform:scaleX(0);transition:transform 0.4s ease;
+  transform-origin:left;
+}
+.service-card:hover{border-color:rgba(200,168,124,0.2);transform:translateY(-4px)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card .card-num{font-size:0.6rem;color:var(--accent-dim);letter-spacing:0.15em;margin-bottom:1.5rem}
+.service-card h3{font-family:var(--font-display);font-size:1.8rem;font-weight:300;margin-bottom:1rem}
+.service-card p{font-size:0.75rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem}
+.service-card .card-link{
+  font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--accent-dim);transition:color 0.3s;
+}
+.service-card:hover .card-link{color:var(--accent)}
+
+/* ─── CONTACT (HOME) ─── */
+.home-contact{
+  padding:6rem 3rem;
+  border-top:1px solid rgba(255,255,255,0.04);
+  text-align:center;
+  max-width:700px;margin:0 auto;
+}
+.home-contact h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:1.5rem}
+.home-contact p{font-size:0.85rem;color:var(--text-muted);margin-bottom:2.5rem;line-height:1.8}
+.contact-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+.contact-links a{color:var(--text);text-decoration:none;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.8rem 2rem;border:1px solid rgba(255,255,255,0.12);transition:all 0.3s;border-radius:2px}
+.contact-links a:hover{border-color:var(--accent);color:var(--accent);background:rgba(200,168,124,0.05)}
+
+/* ─── GALLERY PAGE ─── */
+.gallery-page{padding:8rem 3rem 4rem;max-width:1400px;margin:0 auto}
+.gallery-header{margin-bottom:4rem}
+.gallery-header h1{
+  font-family:var(--font-display);
+  font-size:clamp(2.5rem,5vw,4.5rem);
+  font-weight:300;margin-bottom:1rem;
+}
+.gallery-header p{font-size:0.8rem;color:var(--text-muted);max-width:500px;line-height:1.8}
+.gallery-back{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--text-muted);cursor:pointer;margin-bottom:2rem;
+  transition:color 0.3s;
+}
+.gallery-back:hover{color:var(--accent)}
+.gallery-back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5}
+
+.gallery{columns:3;column-gap:1rem}
+.gallery-item{break-inside:avoid;margin-bottom:1rem;position:relative;overflow:hidden;cursor:pointer;border-radius:2px}
+.gallery-item img{width:100%;display:block;filter:grayscale(20%) contrast(1.05);transition:all 0.6s cubic-bezier(0.25,0.46,0.45,0.94)}
+.gallery-item:hover img{filter:grayscale(0%) contrast(1.1);transform:scale(1.03)}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.8) 0%,transparent 50%);opacity:0;transition:opacity 0.4s ease;display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem}
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-overlay .photo-title{font-family:var(--font-display);font-size:1.1rem;font-weight:400;margin-bottom:0.3rem}
+.gallery-overlay .photo-meta{font-size:0.6rem;color:var(--text-muted);letter-spacing:0.1em}
+
+/* ─── PROJECT CARDS ─── */
+.project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:1.5rem}
+.project-card{
+  position:relative;overflow:hidden;border-radius:3px;cursor:pointer;
+  aspect-ratio:16/10;
+  background:var(--bg-elevated);
+}
+.project-card img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(0.5) grayscale(20%);
+  transition:all 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.project-card:hover img{filter:brightness(0.35) grayscale(0%);transform:scale(1.05)}
+.project-card-info{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  padding:2rem;
+  z-index:2;
+}
+.project-card-info .project-client{
+  font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:0.5rem;
+}
+.project-card-info .project-name{
+  font-family:var(--font-display);font-size:1.8rem;font-weight:300;
+  line-height:1.2;margin-bottom:0.5rem;
+  transition:transform 0.4s ease;
+}
+.project-card:hover .project-name{transform:translateY(-4px)}
+.project-card-info .project-year{
+  font-size:0.6rem;color:var(--text-muted);letter-spacing:0.1em;
+}
+.project-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:3px;background:var(--accent);
+  transform:scaleX(0);transition:transform 0.4s ease;
+  transform-origin:left;z-index:3;
+}
+.project-card:hover::after{transform:scaleX(1)}
+
+/* ─── FOOTER ─── */
+footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;justify-content:space-between;align-items:center;font-size:0.6rem;color:var(--text-muted);letter-spacing:0.1em}
+
+/* ─── LIGHTBOX ─── */
+.lightbox{position:fixed;inset:0;background:rgba(5,5,5,0.96);z-index:200;display:none;justify-content:center;align-items:center;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:2px;animation:fadeIn 0.3s ease}
+.lightbox-close{position:absolute;top:2rem;right:2rem;color:var(--text-muted);font-size:1.5rem;background:none;border:none;cursor:pointer;font-family:var(--font-body);transition:color 0.3s}
+.lightbox-close:hover{color:var(--text)}
+.lightbox-info{position:absolute;bottom:2rem;left:3rem;opacity:0.7}
+.lightbox-info .photo-title{font-family:var(--font-display);font-size:1.2rem}
+.lightbox-info .photo-meta{font-size:0.65rem;color:var(--text-muted);letter-spacing:0.1em;margin-top:0.3rem}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.page.active .reveal{animation:revealAnim 0.8s cubic-bezier(0.25,0.46,0.45,0.94) forwards}
+@keyframes revealAnim{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── PAGE TRANSITION ─── */
+.page-enter{animation:pageIn 0.5s ease forwards}
+@keyframes pageIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  .gallery{columns:2}
+  .home-about-grid{grid-template-columns:1fr;gap:3rem}
+  .home-about-portrait{max-width:400px}
+  .services-grid{grid-template-columns:1fr}
+  .project-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero-content{padding:0 1.5rem 4rem}
+  .home-about,.services-preview{padding-left:1.5rem;padding-right:1.5rem}
+  .home-contact{padding-left:1.5rem;padding-right:1.5rem}
+  .gallery-page{padding:6rem 1.5rem 4rem}
+  .gallery{columns:1;max-width:500px;margin:0 auto}
+  .stat-row{gap:2rem}
+  footer{flex-direction:column;gap:1rem;text-align:center}
+  .scroll-cta{display:none}
+  .contact-links{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="logo" onclick="showPage('home')">YOYO<span>YU</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a onclick="showPage('portrait')" data-lang-en data-page="portrait">Portrait</a><a onclick="showPage('portrait')" data-lang-zh style="display:none" data-page="portrait">人像</a></li>
+      <li><a onclick="showPage('street')" data-lang-en data-page="street">Street</a><a onclick="showPage('street')" data-lang-zh style="display:none" data-page="street">街拍</a></li>
+      <li><a onclick="showPage('commercial')" data-lang-en data-page="commercial">Commercial</a><a onclick="showPage('commercial')" data-lang-zh style="display:none" data-page="commercial">商業</a></li>
+      <li><a onclick="showPage('home','contact')" data-lang-en>Contact</a><a onclick="showPage('home','contact')" data-lang-zh style="display:none">聯絡</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLang()">中文</button>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showPage('home');toggleMenu()" data-lang-en>Home</a><a onclick="showPage('home');toggleMenu()" data-lang-zh style="display:none">首頁</a>
+  <a onclick="showPage('portrait');toggleMenu()" data-lang-en>Portrait</a><a onclick="showPage('portrait');toggleMenu()" data-lang-zh style="display:none">人像</a>
+  <a onclick="showPage('street');toggleMenu()" data-lang-en>Street</a><a onclick="showPage('street');toggleMenu()" data-lang-zh style="display:none">街拍</a>
+  <a onclick="showPage('commercial');toggleMenu()" data-lang-en>Commercial</a><a onclick="showPage('commercial');toggleMenu()" data-lang-zh style="display:none">商業</a>
+  <a onclick="showPage('home','contact');toggleMenu()" data-lang-en>Contact</a><a onclick="showPage('home','contact');toggleMenu()" data-lang-zh style="display:none">聯絡</a>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- HOME PAGE -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1 class="reveal" style="letter-spacing:0.12em">
+        <span data-lang-en>YOYO<span style="display:inline-block;width:0.08em"></span><span style="color:var(--accent)">YU</span></span>
+        <span data-lang-zh style="display:none">YOYO<span style="display:inline-block;width:0.08em"></span><span style="color:var(--accent)">YU</span></span>
+      </h1>
+      <div class="hero-line reveal" style="transition-delay:0.2s"></div>
+      <p class="hero-sub reveal" style="transition-delay:0.4s">
+        <span data-lang-en>Portrait · Street · Commercial Photography</span>
+        <span data-lang-zh style="display:none">人像 · 街拍 · 商業攝影</span>
+      </p>
+    </div>
+    <div class="scroll-cta" data-lang-en>Scroll</div>
+    <div class="scroll-cta" data-lang-zh style="display:none">下滑</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="home-about">
+    <div class="home-about-grid">
+      <div class="home-about-text reveal">
+        <h2>
+          <span data-lang-en>About Me</span>
+          <span data-lang-zh style="display:none">關於我</span>
+        </h2>
+        <p data-lang-en>I walk the streets with a camera and an open mind. Every city has its own rhythm — the way light cuts between buildings at golden hour, the quiet drama of a stranger's silhouette against neon, the beautiful chaos of daily life unfolding in real time.</p>
+        <p data-lang-en>From intimate portraits to commercial campaigns, I bring the same eye — honest, deliberate, and always looking for the story hiding in plain sight.</p>
+        <p data-lang-zh style="display:none">我帶著相機走在街頭，帶著一顆開放的心。每座城市都有自己的節奏——黃昏時光線在建築間切割的方式、陌生人的剪影在霓虹前的靜默戲劇、日常生活即時展開的美麗混亂。</p>
+        <p data-lang-zh style="display:none">從人像到商業攝影，我始終用同一雙眼睛——誠實、有意識地，尋找藏在日常裡的故事。</p>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-num">5+</div><div class="stat-label"><span data-lang-en>Years</span><span data-lang-zh style="display:none">年經驗</span></div></div>
+          <div class="stat"><div class="stat-num">12</div><div class="stat-label"><span data-lang-en>Cities</span><span data-lang-zh style="display:none">城市</span></div></div>
+          <div class="stat"><div class="stat-num">∞</div><div class="stat-label"><span data-lang-en>Frames</span><span data-lang-zh style="display:none">快門數</span></div></div>
+        </div>
+      </div>
+      <div class="home-about-portrait reveal" style="transition-delay:0.2s">
+        <!-- Replace with your portrait -->
+        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=80" alt="Photographer">
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="services-preview">
+    <div class="services-grid">
+      <div class="service-card reveal" onclick="showPage('portrait')">
+        <div class="card-num">01</div>
+        <h3><span data-lang-en>Portrait</span><span data-lang-zh style="display:none">人像</span></h3>
+        <p><span data-lang-en>The quiet intensity of a person, distilled into a single frame.</span><span data-lang-zh style="display:none">一個人的靜默張力，凝縮在一幀之中。</span></p>
+        <span class="card-link"><span data-lang-en>View works →</span><span data-lang-zh style="display:none">查看作品 →</span></span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.15s" onclick="showPage('street')">
+        <div class="card-num">02</div>
+        <h3><span data-lang-en>Street</span><span data-lang-zh style="display:none">街拍</span></h3>
+        <p><span data-lang-en>The poetry of everyday urban life, captured in passing.</span><span data-lang-zh style="display:none">日常城市生活的詩意，在擦肩而過之間捕捉。</span></p>
+        <span class="card-link"><span data-lang-en>View works →</span><span data-lang-zh style="display:none">查看作品 →</span></span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.3s" onclick="showPage('commercial')">
+        <div class="card-num">03</div>
+        <h3><span data-lang-en>Commercial</span><span data-lang-zh style="display:none">商業攝影</span></h3>
+        <p><span data-lang-en>Brands deserve images that speak. Let's build your visual language.</span><span data-lang-zh style="display:none">品牌值得會說話的影像。讓我們打造你的視覺語言。</span></p>
+        <span class="card-link"><span data-lang-en>View works →</span><span data-lang-zh style="display:none">查看作品 →</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="home-contact" id="contact">
+    <h2 class="reveal">
+      <span data-lang-en>Get in Touch</span>
+      <span data-lang-zh style="display:none">聯絡我</span>
+    </h2>
+    <p class="reveal">
+      <span data-lang-en>Open to collaborations, exhibitions, and commissioned work. Let's create something together.</span>
+      <span data-lang-zh style="display:none">歡迎合作、展覽、商業委託。一起創造些什麼吧。</span>
+    </p>
+    <div class="contact-links reveal">
+      <a href="/cdn-cgi/l/email-protection#375f525b5b58774e584e584e42475f5843581954585a">Email</a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+      <a href="https://flickr.com" target="_blank">Flickr</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 YOYOYU</span>
+    <span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- PORTRAIT PAGE -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="page-portrait">
+  <div class="gallery-page">
+    <div class="gallery-back" onclick="showPage('home')">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span data-lang-en>Back</span><span data-lang-zh style="display:none">返回</span>
+    </div>
+    <div class="gallery-header">
+      <h1><span data-lang-en>Portrait</span><span data-lang-zh style="display:none">人像</span></h1>
+      <p><span data-lang-en>The quiet intensity of a person, distilled into a single frame.</span><span data-lang-zh style="display:none">一個人的靜默張力，凝縮在一幀之中。</span></p>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80" alt="Portrait" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Untitled I</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=600&q=80" alt="Portrait" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Untitled II</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=80" alt="Portrait" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Untitled III</div><div class="photo-meta">2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&q=80" alt="Portrait" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Untitled IV</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=80" alt="Portrait" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Untitled V</div><div class="photo-meta">2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Portrait" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Untitled VI</div><div class="photo-meta">2025</div></div></div>
+    </div>
+  </div>
+  <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- STREET PAGE -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="page-street">
+  <div class="gallery-page">
+    <div class="gallery-back" onclick="showPage('home')">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span data-lang-en>Back</span><span data-lang-zh style="display:none">返回</span>
+    </div>
+    <div class="gallery-header">
+      <h1><span data-lang-en>Street</span><span data-lang-zh style="display:none">街拍</span></h1>
+      <p><span data-lang-en>The poetry of everyday urban life, captured in passing.</span><span data-lang-zh style="display:none">日常城市生活的詩意，在擦肩而過之間捕捉。</span></p>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1517713982677-4b66332f98de?w=600&q=80" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Crosswalk</span><span data-lang-zh style="display:none">斑馬線</span></div><div class="photo-meta">Taipei — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1494783367193-149034c05e8f?w=600&q=80" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Neon Alley</span><span data-lang-zh style="display:none">霓虹巷弄</span></div><div class="photo-meta">Tokyo — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1531219572328-a0171b4448a3?w=600&q=80" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Morning Market</span><span data-lang-zh style="display:none">晨市</span></div><div class="photo-meta">Taipei — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Skyline</span><span data-lang-zh style="display:none">天際線</span></div><div class="photo-meta">Hong Kong — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1551641506-ee5bf4cb45f1?w=600&q=80" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Rain Station</span><span data-lang-zh style="display:none">雨中車站</span></div><div class="photo-meta">Kyoto — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=600&q=80" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>After Hours</span><span data-lang-zh style="display:none">夜歸</span></div><div class="photo-meta">New York — 2024</div></div></div>
+    </div>
+  </div>
+  <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- COMMERCIAL PAGE (Project Overview) -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="page-commercial">
+  <div class="gallery-page">
+    <div class="gallery-back" onclick="showPage('home')">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span data-lang-en>Back</span><span data-lang-zh style="display:none">返回</span>
+    </div>
+    <div class="gallery-header">
+      <h1><span data-lang-en>Commercial</span><span data-lang-zh style="display:none">商業攝影</span></h1>
+      <p><span data-lang-en>Brands deserve images that speak. Let's build your visual language.</span><span data-lang-zh style="display:none">品牌值得會說話的影像。讓我們打造你的視覺語言。</span></p>
+    </div>
+    <div class="project-grid">
+      <div class="project-card" onclick="showPage('project-1')">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80" alt="Project" loading="lazy">
+        <div class="project-card-info">
+          <div class="project-client"><span data-lang-en>Brand Name</span><span data-lang-zh style="display:none">品牌名稱</span></div>
+          <div class="project-name"><span data-lang-en>Brand Campaign</span><span data-lang-zh style="display:none">品牌形象</span></div>
+          <div class="project-year">2025</div>
+        </div>
+      </div>
+      <div class="project-card" onclick="showPage('project-2')">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" alt="Project" loading="lazy">
+        <div class="project-card-info">
+          <div class="project-client"><span data-lang-en>Restaurant Name</span><span data-lang-zh style="display:none">餐廳名稱</span></div>
+          <div class="project-name"><span data-lang-en>Food & Space</span><span data-lang-zh style="display:none">美食與空間</span></div>
+          <div class="project-year">2025</div>
+        </div>
+      </div>
+      <div class="project-card" onclick="showPage('project-3')">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80" alt="Project" loading="lazy">
+        <div class="project-card-info">
+          <div class="project-client"><span data-lang-en>Product Brand</span><span data-lang-zh style="display:none">產品品牌</span></div>
+          <div class="project-name"><span data-lang-en>Product Lookbook</span><span data-lang-zh style="display:none">產品型錄</span></div>
+          <div class="project-year">2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- PROJECT 1 -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="page-project-1">
+  <div class="gallery-page">
+    <div class="gallery-back" onclick="showPage('commercial')">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span data-lang-en>All Projects</span><span data-lang-zh style="display:none">所有專案</span>
+    </div>
+    <div class="gallery-header">
+      <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem"><span data-lang-en>Brand Name</span><span data-lang-zh style="display:none">品牌名稱</span></p>
+      <h1><span data-lang-en>Brand Campaign</span><span data-lang-zh style="display:none">品牌形象</span></h1>
+      <p><span data-lang-en>A visual identity campaign capturing the essence of the brand through lifestyle and portrait photography.</span><span data-lang-zh style="display:none">透過生活風格與人像攝影，捕捉品牌精髓的視覺識別企劃。</span></p>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Campaign 01</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Campaign 02</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1605902711622-cfb43c4437b5?w=600&q=80" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Campaign 03</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Campaign 04</div><div class="photo-meta">2025</div></div></div>
+    </div>
+  </div>
+  <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- PROJECT 2 -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="page-project-2">
+  <div class="gallery-page">
+    <div class="gallery-back" onclick="showPage('commercial')">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span data-lang-en>All Projects</span><span data-lang-zh style="display:none">所有專案</span>
+    </div>
+    <div class="gallery-header">
+      <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem"><span data-lang-en>Restaurant Name</span><span data-lang-zh style="display:none">餐廳名稱</span></p>
+      <h1><span data-lang-en>Food & Space</span><span data-lang-zh style="display:none">美食與空間</span></h1>
+      <p><span data-lang-en>Interior and culinary photography for a fine dining experience.</span><span data-lang-zh style="display:none">為高級餐飲體驗拍攝的空間與料理攝影。</span></p>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Interior 01</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Dish 01</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Space 01</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Detail 01</div><div class="photo-meta">2025</div></div></div>
+    </div>
+  </div>
+  <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- PROJECT 3 -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="page-project-3">
+  <div class="gallery-page">
+    <div class="gallery-back" onclick="showPage('commercial')">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span data-lang-en>All Projects</span><span data-lang-zh style="display:none">所有專案</span>
+    </div>
+    <div class="gallery-header">
+      <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem"><span data-lang-en>Product Brand</span><span data-lang-zh style="display:none">產品品牌</span></p>
+      <h1><span data-lang-en>Product Lookbook</span><span data-lang-zh style="display:none">產品型錄</span></h1>
+      <p><span data-lang-en>Minimal product photography with an emphasis on form and texture.</span><span data-lang-zh style="display:none">以形態與質感為核心的極簡產品攝影。</span></p>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80" alt="Project 3" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Product 01</div><div class="photo-meta">2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80" alt="Project 3" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Product 02</div><div class="photo-meta">2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600&q=80" alt="Project 3" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Product 03</div><div class="photo-meta">2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80" alt="Project 3" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Product 04</div><div class="photo-meta">2024</div></div></div>
+    </div>
+  </div>
+  <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-info"><div class="photo-title" id="lightboxTitle"></div><div class="photo-meta" id="lightboxMeta"></div></div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ─── LANGUAGE ───
+let currentLang='en';
+function toggleLang(){
+  currentLang=currentLang==='en'?'zh':'en';
+  document.documentElement.setAttribute('data-lang',currentLang);
+  document.querySelectorAll('[data-lang-en]').forEach(el=>{el.style.display=currentLang==='en'?'':'none'});
+  document.querySelectorAll('[data-lang-zh]').forEach(el=>{el.style.display=currentLang==='zh'?'':'none'});
+  document.querySelector('.lang-toggle').textContent=currentLang==='en'?'中文':'EN';
+}
+
+// ─── PAGE ROUTING ───
+function showPage(page, scrollTo){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const target=document.getElementById('page-'+page);
+  if(target){
+    target.classList.add('active');
+    target.classList.remove('page-enter');
+    void target.offsetWidth;
+    target.classList.add('page-enter');
+  }
+  // Update active nav
+  document.querySelectorAll('.nav-links a[data-page]').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('data-page')===page);
+  });
+  // Scroll
+  if(scrollTo){
+    setTimeout(()=>{
+      const el=document.getElementById(scrollTo);
+      if(el) el.scrollIntoView({behavior:'smooth'});
+    },100);
+  } else {
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+  // Re-observe reveals
+  setTimeout(()=>{
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el=>observer.observe(el));
+  },50);
+}
+
+// ─── SCROLL NAV ───
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60)});
+
+// ─── MOBILE MENU ───
+function toggleMenu(){
+  document.querySelector('.hamburger').classList.toggle('active');
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.style.overflow=document.getElementById('mobileMenu').classList.contains('open')?'hidden':'';
+}
+
+// ─── REVEAL ───
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// ─── LIGHTBOX ───
+function openLightbox(item){
+  const img=item.querySelector('img'),title=item.querySelector('.photo-title'),meta=item.querySelector('.photo-meta');
+  document.getElementById('lightboxImg').src=img.src.replace('w=600','w=1400');
+  document.getElementById('lightboxTitle').textContent=title?title.textContent.trim():'';
+  document.getElementById('lightboxMeta').textContent=meta?meta.textContent:'';
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){document.getElementById('lightbox').classList.r
