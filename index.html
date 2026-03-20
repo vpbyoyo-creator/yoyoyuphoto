@@ -83,6 +83,11 @@ nav.scrolled{padding:1rem 3rem;background:rgba(10,10,10,0.95)}
   transform:scale(1.05);
   transition:transform 8s ease;
 }
+@media(max-width:768px){
+  .hero-bg{
+    background:url('images/index-mobile.jpg') center/cover no-repeat;
+  }
+}
 .hero:hover .hero-bg{transform:scale(1)}
 .hero::after{
   content:'';position:absolute;inset:0;
@@ -409,7 +414,7 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
       <span data-lang-zh style="display:none">歡迎合作、展覽、商業委託。一起創造些什麼吧。</span>
     </p>
     <div class="contact-links reveal">
-      <a href=a href="mailto:vpbyoyo@gmail.com">>Email</a>
+      <a href="mailto:vpbyoyo@gmail.com">Email</a>
       <a href="https://www.instagram.com/yoyo.yu22" target="_blank">Instagram</a>
       <a href="https://flickr.com" target="_blank">Contact</a>
     </div>
@@ -443,6 +448,7 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
       <div class="gallery-item" onclick="openLightbox(this)"><img src="images/por/crystal.jpg" alt="Portrait" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Crystal</div><div class="photo-meta">2025</div></div></div>
       <div class="gallery-item" onclick="openLightbox(this)"><img src="images/por/Powen.jpg" alt="Portrait" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Powen</div><div class="photo-meta">2025</div></div></div>
       <div class="gallery-item" onclick="openLightbox(this)"><img src="images/por/rainie3.jpg" alt="Portrait" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Rainie</div><div class="photo-meta">2025</div></div></div>
+  </div>
   </div>
   <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
 </div>
@@ -487,27 +493,19 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
     </div>
     <div class="project-grid">
       <div class="project-card" onclick="showPage('project-1')">
-        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80" alt="Project" loading="lazy">
+        <img src="images/com/lexuscover.jpg" alt="Project" loading="lazy">
         <div class="project-card-info">
-          <div class="project-client"><span data-lang-en>Brand Name</span><span data-lang-zh style="display:none">品牌名稱</span></div>
-          <div class="project-name"><span data-lang-en>Brand Campaign</span><span data-lang-zh style="display:none">品牌形象</span></div>
-          <div class="project-year">2025</div>
+          <div class="project-client"><span data-lang-en>Lexus | Condé Nast TAIWAN</span><span data-lang-zh style="display:none">Lexus | Condé Nast TAIWAN</span></div>
+          <div class="project-name"><span data-lang-en>Lifestyle Editorial</span><span data-lang-zh style="display:none">生活風格編輯拍攝</span></div>
+          <div class="project-year">2026</div>
         </div>
       </div>
       <div class="project-card" onclick="showPage('project-2')">
-        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" alt="Project" loading="lazy">
+        <img src="images/com/vivocover.jpg" alt="Project" loading="lazy">
         <div class="project-card-info">
-          <div class="project-client"><span data-lang-en>Restaurant Name</span><span data-lang-zh style="display:none">餐廳名稱</span></div>
-          <div class="project-name"><span data-lang-en>Food & Space</span><span data-lang-zh style="display:none">美食與空間</span></div>
+          <div class="project-client"><span data-lang-en>vivo | Condé Nast TAIWAN</span><span data-lang-zh style="display:none">vivo | Condé Nast TAIWAN</span></div>
+          <div class="project-name"><span data-lang-en>Brand Collaboration</span><span data-lang-zh style="display:none">品牌合作拍攝</span></div>
           <div class="project-year">2025</div>
-        </div>
-      </div>
-      <div class="project-card" onclick="showPage('project-3')">
-        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80" alt="Project" loading="lazy">
-        <div class="project-card-info">
-          <div class="project-client"><span data-lang-en>Product Brand</span><span data-lang-zh style="display:none">產品品牌</span></div>
-          <div class="project-name"><span data-lang-en>Product Lookbook</span><span data-lang-zh style="display:none">產品型錄</span></div>
-          <div class="project-year">2024</div>
         </div>
       </div>
     </div>
@@ -525,12 +523,12 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
       <span data-lang-en>All Projects</span><span data-lang-zh style="display:none">所有專案</span>
     </div>
     <div class="gallery-header">
-      <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem"><span data-lang-en>Brand Name</span><span data-lang-zh style="display:none">品牌名稱</span></p>
-      <h1><span data-lang-en>Brand Campaign</span><span data-lang-zh style="display:none">品牌形象</span></h1>
+      <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem"><span data-lang-en>Lexus | Condé Nast TAIWAN</span><span data-lang-zh style="display:none">Lexus | Condé Nast TAIWAN</span></p>
+      <h1><span data-lang-en>Lifestyle Editorial</span><span data-lang-zh style="display:none">生活風格編輯拍攝</span></h1>
       <p><span data-lang-en>A visual identity campaign capturing the essence of the brand through lifestyle and portrait photography.</span><span data-lang-zh style="display:none">透過生活風格與人像攝影，捕捉品牌精髓的視覺識別企劃。</span></p>
     </div>
     <div class="gallery">
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Campaign 01</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus1.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Campaign 01</div><div class="photo-meta">2025</div></div></div>
       <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Campaign 02</div><div class="photo-meta">2025</div></div></div>
       <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1605902711622-cfb43c4437b5?w=600&q=80" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Campaign 03</div><div class="photo-meta">2025</div></div></div>
       <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Campaign 04</div><div class="photo-meta">2025</div></div></div>
@@ -549,8 +547,8 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
       <span data-lang-en>All Projects</span><span data-lang-zh style="display:none">所有專案</span>
     </div>
     <div class="gallery-header">
-      <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem"><span data-lang-en>Restaurant Name</span><span data-lang-zh style="display:none">餐廳名稱</span></p>
-      <h1><span data-lang-en>Food & Space</span><span data-lang-zh style="display:none">美食與空間</span></h1>
+      <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem"><span data-lang-en>vivo | Condé Nast TAIWAN</span><span data-lang-zh style="display:none">vivo | Condé Nast TAIWAN</span></p>
+      <h1><span data-lang-en>Brand Collaboration</span><span data-lang-zh style="display:none">品牌合作拍攝</span></h1>
       <p><span data-lang-en>Interior and culinary photography for a fine dining experience.</span><span data-lang-zh style="display:none">為高級餐飲體驗拍攝的空間與料理攝影。</span></p>
     </div>
     <div class="gallery">
@@ -563,29 +561,7 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
   <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
 </div>
 
-<!-- ══════════════════════════════════════════ -->
-<!-- PROJECT 3 -->
-<!-- ══════════════════════════════════════════ -->
-<div class="page" id="page-project-3">
-  <div class="gallery-page">
-    <div class="gallery-back" onclick="showPage('commercial')">
-      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span data-lang-en>All Projects</span><span data-lang-zh style="display:none">所有專案</span>
-    </div>
-    <div class="gallery-header">
-      <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem"><span data-lang-en>Product Brand</span><span data-lang-zh style="display:none">產品品牌</span></p>
-      <h1><span data-lang-en>Product Lookbook</span><span data-lang-zh style="display:none">產品型錄</span></h1>
-      <p><span data-lang-en>Minimal product photography with an emphasis on form and texture.</span><span data-lang-zh style="display:none">以形態與質感為核心的極簡產品攝影。</span></p>
-    </div>
-    <div class="gallery">
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80" alt="Project 3" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Product 01</div><div class="photo-meta">2024</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80" alt="Project 3" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Product 02</div><div class="photo-meta">2024</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600&q=80" alt="Project 3" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Product 03</div><div class="photo-meta">2024</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80" alt="Project 3" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Product 04</div><div class="photo-meta">2024</div></div></div>
-    </div>
-  </div>
-  <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
-</div>
+
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
