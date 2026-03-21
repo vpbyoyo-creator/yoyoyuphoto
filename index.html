@@ -451,9 +451,9 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
       <span data-lang-zh style="display:none">歡迎合作、展覽、商業委託。一起創造些什麼吧。</span>
     </p>
     <div class="contact-links reveal">
-      <a href="mailto:vpbyoyo@gmail.com">Email</a>
+      <a onclick="copyEmail()" style="cursor:pointer" id="email-btn">Email</a>
       <a href="https://www.instagram.com/yoyo.yu22" target="_blank">Instagram</a>
-      <a href="https://flickr.com" target="_blank">Contact</a>
+      <a href="https://forms.gle/GkzRQL4b3rDNTHgn6" target="_blank">Contact</a>
     </div>
   </section>
 
@@ -532,7 +532,6 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
       <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street26.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street26</span><span data-lang-zh style="display:none">Street26</span></div><div class="photo-meta">Keelung — 2025</div></div></div>
       <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street27.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street27</span><span data-lang-zh style="display:none">Street27</span></div><div class="photo-meta">New Taipei — 2024</div></div></div>
       <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street28.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street28</span><span data-lang-zh style="display:none">Street28</span></div><div class="photo-meta">Keelung — 2024</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street29.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street29</span><span data-lang-zh style="display:none">Street29</span></div><div class="photo-meta">Keelung — 2025</div></div></div>
     </div>
   </div>
   <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
@@ -588,15 +587,15 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
       <p><span data-lang-en>A lifestyle editorial series for Lexus, shaped through atmosphere, detail, and companion-driven storytelling.</span><span data-lang-zh style="display:none">為 Lexus 拍攝的生活風格編輯影像系列，透過氛圍、細節與陪伴感敘事構成畫面。</span></p>
     </div>
     <div class="gallery">
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus1.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 01</div><div class="photo-meta">2026</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus2.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 02</div><div class="photo-meta">2026</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus3.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 03</div><div class="photo-meta">2026</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus4.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 04</div><div class="photo-meta">2026</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus5.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 05</div><div class="photo-meta">2026</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus6.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 06</div><div class="photo-meta">2026</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus7.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 07</div><div class="photo-meta">2026</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus8.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 08</div><div class="photo-meta">2026</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus9.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 09</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus1.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roommates 01</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus2.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roommates 02</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus3.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roommates 03</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus4.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roommates 04</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus5.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roommates 05</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus6.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roommates 06</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus7.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roommates 07</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus8.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roommates 08</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus9.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roommates 09</div><div class="photo-meta">2026</div></div></div>
     </div>
   </div>
   <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
@@ -705,6 +704,21 @@ function openLightbox(item){
 }
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow=''}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+
+function copyEmail(){
+  navigator.clipboard.writeText('vpbyoyo@gmail.com').then(()=>{
+    const btn=document.getElementById('email-btn');
+    const orig=btn.textContent;
+    btn.textContent='Copied!';
+    btn.style.color='var(--accent)';
+    btn.style.borderColor='var(--accent)';
+    setTimeout(()=>{
+      btn.textContent=orig;
+      btn.style.color='';
+      btn.style.borderColor='';
+    },2000);
+  });
+}
 </script>
 </body>
 </html>
