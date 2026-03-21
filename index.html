@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>YOYOYU — Photography</title>
+<meta property="og:title" content="YOYOYU — Photography">
+<meta property="og:description" content="Portrait · Street · Commercial Photography">
+<meta property="og:image" content="https://yoyoyuphoto.com/images/og.jpg">
+<meta property="og:url" content="https://yoyoyuphoto.com">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -295,6 +300,7 @@ nav.scrolled{padding:1rem 3rem;background:rgba(10,10,10,0.95)}
 /* ─── FOOTER ─── */
 footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;justify-content:space-between;align-items:center;font-size:0.6rem;color:var(--text-muted);letter-spacing:0.1em}
 
+
 /* ─── LIGHTBOX ─── */
 .lightbox{position:fixed;inset:0;background:rgba(5,5,5,0.96);z-index:200;display:none;justify-content:center;align-items:center;cursor:zoom-out}
 .lightbox.open{display:flex}
@@ -340,6 +346,21 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
   .scroll-cta{display:none}
   .contact-links{flex-direction:column;align-items:center}
 }
+/* ─── FLOATING BACK ─── */
+.float-back{
+  position:fixed;bottom:10rem;left:30rem;z-index:99;
+  display:flex;align-items:center;gap:0.6rem;
+  font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--text-muted);background:rgba(10,10,10,0.85);
+  border:1px solid rgba(255,255,255,0.1);
+  padding:0.7rem 1.2rem;border-radius:2px;
+  cursor:pointer;backdrop-filter:blur(8px);
+  opacity:0;pointer-events:none;
+  transition:all 0.3s ease;
+}
+.float-back.visible{opacity:1;pointer-events:auto}
+.float-back:hover{color:var(--accent);border-color:var(--accent)}
+.float-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5}
 </style>
 </head>
 <body>
@@ -630,6 +651,11 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
   <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
 </div>
 
+<!-- FLOATING BACK -->
+<div class="float-back" id="floatBack" onclick="floatBackClick()">
+  <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span data-lang-en>Back</span><span data-lang-zh style="display:none">返回</span>
+</div>
 
 
 <!-- LIGHTBOX -->
@@ -693,6 +719,26 @@ function toggleMenu(){
 const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
+// ─── FLOATING BACK ───
+const floatBackPages=['portrait','street','commercial','project-1','project-2'];
+const floatBackTarget={portrait:'home',street:'home',commercial:'home','project-1':'commercial','project-2':'commercial'};
+let currentPage='home';
+
+const _origShowPage=showPage;
+showPage=function(page,scrollTo){
+  currentPage=page;
+  _origShowPage(page,scrollTo);
+};
+
+function floatBackClick(){
+  showPage(floatBackTarget[currentPage]||'home');
+}
+
+window.addEventListener('scroll',()=>{
+  const btn=document.getElementById('floatBack');
+  const show=floatBackPages.includes(currentPage)&&window.scrollY>300;
+  btn.classList.toggle('visible',show);
+});
 // ─── LIGHTBOX ───
 function openLightbox(item){
   const img=item.querySelector('img'),title=item.querySelector('.photo-title'),meta=item.querySelector('.photo-meta');
