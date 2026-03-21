@@ -11,6 +11,7 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Volkhov:400' rel='stylesheet' type='text/css'><script type="text/javascript">var _jf = _jf || [];_jf.push(['p','65856']);_jf.push(['initAction',true]);_jf.push(['_setFont','datm5','css','.datm5']);_jf.push(['_setFont','datm5','alias','datm5']);_jf.push(['_setFont','datm5','english','Volkhov']);_jf.push(['_setFont','datm5','weight',600]);_jf.push(['_setFont','jf-jinxuan-book','css','.jf-jinxuan-book']);_jf.push(['_setFont','jf-jinxuan-book','alias','jf-jinxuan']);_jf.push(['_setFont','jf-jinxuan-book','weight',300]);_jf.push(['_setFont','jf-jinxuan-regular','css','.jf-jinxuan-regular']);_jf.push(['_setFont','jf-jinxuan-regular','alias','jf-jinxuan']);_jf.push(['_setFont','jf-jinxuan-regular','weight',400]);_jf.push(['_setFont','jf-lanyangming-light','css','.jf-lanyangming-light']);_jf.push(['_setFont','jf-lanyangming-light','alias','jf-lanyangming']);_jf.push(['_setFont','jf-lanyangming-light','weight',200]);_jf.push(['_setFont','creammincho','css','.creammincho']);_jf.push(['_setFont','creammincho','alias','creammincho']);_jf.push(['_setFont','creammincho','weight',400]);(function(A,p,c,m,l,q,r,h,B,D){var b=A._jf;if(b.constructor!==Object){var t=!0,u=function(a){var f=!0,e;for(e in b)b[e][0]==a&&(f&&(f=f&&!1!==b[e][1].call(b)),b[e]=null,delete b[e])},v=/\S+/g,w=/[\t\r\n\f]/g,C=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,n="".trim,x=n&&!n.call("\ufeff\u00a0")?function(a){return null==a?"":n.call(a)}:function(a){return null==a?"":(a+"").replace(C,"")},k=function(a){var f,b,g;if("string"===typeof a&&a&&(a=(a||"").match(v)||[],f=h[c]?(" "+h[c]+" ").replace(w," "):" ")){for(g=0;b=a[g++];)0>f.indexOf(" "+b+" ")&&(f+=b+" ");h[c]=x(f)}},d=function(a){var b,e,g;if(0===arguments.length||"string"===typeof a&&a){var d=(a||"").match(v)||[];if(b=h[c]?(" "+h[c]+" ").replace(w," "):""){for(g=0;e=d[g++];)for(;0<=b.indexOf(" "+e+" ");)b=b.replace(" "+e+" "," ");h[c]=a?x(b):""}}},y;b.addScript=y=function(b,f,e,g,d,c){d=d||function(){};c=c||function(){};var a=p.createElement("script"),h=p.getElementsByTagName("script")[0],k,m=!1,l=function(){a.src="";a.parentNode.removeChild(a);a=a.onerror=a.onload=a.onreadystatechange=null};g&&(k=setTimeout(function(){l();c()},g));a.type=f||"text/javascript";a.async=e;a.onload=a.onreadystatechange=function(b,c){m||a.readyState&&!/loaded|complete/.test(a.readyState)||(m=!0,g&&clearTimeout(k),l(),c||d())};a.onerror=function(a,b,d){g&&clearTimeout(k);l();c();return!0};a.src=b;h.parentNode.insertBefore(a,h)};for(var z in b)"initAction"==b[z][0]&&(t=b[z][1]);b.push(["_eventPreload",function(){1==t&&k(m);y(B,null,!1,3E3,null,function(){u("_eventInactived")})}]);b.push(["_eventReload",function(){d(r);d(q);k(l)}]);b.push(["_eventActived",function(){d(m);d(l);k(q)}]);b.push(["_eventInactived",function(){d(m);d(l);k(r)}]);u("_eventPreload")}})(this,this.document,"className","jf-loading","jf-reloading","jf-active","jf-inactive",this.document.getElementsByTagName("html")[0],"//ds.justfont.com/js/stable/v/6.1/id/494082328793");</script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -25,7 +26,7 @@
   --accent-dim:#8a7455;
   --font-display-en:'Cormorant Garamond', serif;
   --font-body-en:'DM Mono', monospace;
-  --font-display-zh:'Noto Serif TC', serif;
+  --font-display-zh:'jf-jinxuan', serif;
   --font-body-zh:'Noto Sans TC', sans-serif;
   --grain:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
 }
@@ -37,36 +38,62 @@ html[data-lang='zh']{
   --font-display:var(--font-display-zh);
   --font-body:var(--font-body-zh);
 }
-html[data-lang='zh'] .hero h1,
-html[data-lang='zh'] .page-header h1,
-html[data-lang='zh'] .service-card h3,
-html[data-lang='zh'] .home-contact h2,
+/* logo 和 hero 主標永遠用英文字型 */
+html[data-lang='zh'] .logo,
+html[data-lang='zh'] #page-home .hero h1{
+  font-family:var(--font-display-en);
+  font-weight:500;
+}
+/* gallery overlay / lightbox title 永遠用英文字型 */
 html[data-lang='zh'] .gallery-overlay .photo-title,
 html[data-lang='zh'] .lightbox-info .photo-title{
-  font-weight:300;
-  letter-spacing:-0.01em;
+  font-family:var(--font-display-en);
+  font-weight:500;
+  letter-spacing:0.05em;
 }
-
+/* 大標題字級 */
 html[data-lang='zh'] .hero h1,
 html[data-lang='zh'] .page-header h1{
   font-size:clamp(3.2rem,8.2vw,7.2rem);
 }
-
+/* gallery header 標題字距 */
+html[data-lang='zh'] .gallery-header h1{
+  letter-spacing:0em;
+}
+html[data-lang='zh'] .gallery-header h1{
+  font-size:clamp(2rem,4vw,3.5rem);
+}
+/* project 內頁標題字距 */
+html[data-lang='zh'] #page-project-1 .gallery-header h1,
+html[data-lang='zh'] #page-project-2 .gallery-header h1{
+  letter-spacing:-0.02em;
+}
+/* service card 和 contact 標題縮小 */
+html[data-lang='zh'] .service-card h3,
+html[data-lang='zh'] .home-contact h2{
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+}
+/* project card 名稱 */
 html[data-lang='zh'] .project-name{
-  font-weight:300;
+  font-weight:500;
   font-size:1.65rem;
   line-height:1.26;
   letter-spacing:0.035em;
 }
-
-html[data-lang='zh'] .service-card h3,
-html[data-lang='zh'] .home-contact h2{
-  font-size:0.92em;
+/* hero tagline */
+html[data-lang='zh'] .hero-sub{
+  font-size:0.85rem;
 }
-html[data-lang='zh'] .logo,
-html[data-lang='zh'] #page-home .hero h1{
-  font-family:var(--font-display-en);
-  font-weight:300;
+/* nav 中文字距 */
+html[data-lang='zh'] .nav-links a{
+  letter-spacing:1em;
+}
+/* about 標題對齊補正 */
+html[data-lang='zh'] .home-about-text h2{
+  text-indent:-0.1em;
+}
+html[data-lang='zh'] .home-about-text h2{
+  text-indent: -0.1em;
 }
 /* ─── NAV ─── */
 nav{
@@ -83,11 +110,16 @@ nav.scrolled{padding:1rem 3rem;background:rgba(10,10,10,0.95)}
 .nav-right{display:flex;align-items:center;gap:2rem}
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{
-  color:rgba(232,228,223,0.6);text-decoration:none;font-size:0.7rem;
+  color:rgba(232,228,223,0.6);text-decoration:none;font-size:0.85rem;
   letter-spacing:0.15em;text-transform:uppercase;transition:color 0.3s;
   position:relative;cursor:pointer;
 }
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s ease}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;
+  width:0;height:1px;background:var(--accent);
+  transition:width 0.3s ease;
+  max-width:calc(100% - 1em);
+}
 .nav-links a:hover{color:var(--text)}
 .nav-links a:hover::after{width:100%}
 .nav-links a.active{color:var(--accent)}
@@ -121,7 +153,7 @@ nav.scrolled{padding:1rem 3rem;background:rgba(10,10,10,0.95)}
   position:absolute;inset:0;
   /* Replace with your own hero image */
   background:url('images/index.jpg') center/cover no-repeat;
-  filter:brightness(0.35) contrast(1.1);
+  filter:brightness(0.65) contrast(1.05);
   transform:scale(1.05);
   transition:transform 8s ease;
 }
@@ -375,7 +407,7 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
       <li><a onclick="showPage('commercial')" data-lang-en data-page="commercial">Commercial</a><a onclick="showPage('commercial')" data-lang-zh style="display:none" data-page="commercial">商業</a></li>
       <li><a onclick="showPage('home','contact')" data-lang-en>Contact</a><a onclick="showPage('home','contact')" data-lang-zh style="display:none">聯絡</a></li>
     </ul>
-    <button class="lang-toggle" onclick="toggleLang()">中文</button>
+    <button class="lang-toggle" onclick="toggleLang()" id="lang-btn">中文</button>
     <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -396,21 +428,17 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <h1 class="reveal" style="letter-spacing:0.12em">
-        <span data-lang-en>YOYO<span style="display:inline-block;width:0.08em"></span><span style="color:var(--accent)">YU</span></span>
-        <span data-lang-zh style="display:none">YOYO<span style="display:inline-block;width:0.08em"></span><span style="color:var(--accent)">YU</span></span>
-      </h1>
-      <div class="hero-line reveal" style="transition-delay:0.2s"></div>
-      <p class="hero-sub reveal" style="transition-delay:0.4s">
-        <span data-lang-en>Portrait · Street · Commercial Photography</span>
-        <span data-lang-zh style="display:none">人像 · 街拍 · 商業攝影</span>
-      </p>
-    </div>
-    <div class="scroll-cta" data-lang-en>Scroll</div>
-    <div class="scroll-cta" data-lang-zh style="display:none">下滑</div>
-  </section>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-line reveal" style="transition-delay:0.2s"></div>
+    <p class="hero-sub reveal" style="transition-delay:0.4s">
+      <span data-lang-en>Portrait · Street · Commercial Photography</span>
+      <span data-lang-zh>人像 · 街拍 · 商業攝影</span>
+    </p>
+  </div>
+  <div class="scroll-cta" data-lang-en>Scroll</div>
+  <div class="scroll-cta" data-lang-zh style="display:none">下滑</div>
+</section>
 
   <!-- ABOUT -->
   <section class="home-about">
@@ -571,6 +599,7 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
       <h1><span data-lang-en>Commercial</span><span data-lang-zh style="display:none">商業攝影</span></h1>
       <p><span data-lang-en>Brands deserve images that speak. Let's build your visual language.</span><span data-lang-zh style="display:none">品牌值得會說話的影像。讓我們打造你的視覺語言。</span></p>
     </div>
+    <!--
     <div class="project-grid">
       <div class="project-card" onclick="showPage('project-1')">
         <img src="images/com/lexuscover.jpg" alt="Project" loading="lazy">
@@ -580,6 +609,7 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
           <div class="project-year">2026</div>
         </div>
       </div>
+      -->
       <div class="project-card" onclick="showPage('project-2')">
         <img src="images/com/vivocover.jpg" alt="Project" loading="lazy">
         <div class="project-card-info">
@@ -589,9 +619,10 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
         </div>
       </div>
     </div>
+    <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
   </div>
-  <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
-</div>
+  
+
 
 <!-- ══════════════════════════════════════════ -->
 <!-- PROJECT 1 -->
@@ -621,7 +652,6 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
   </div>
   <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
 </div>
-
 <!-- ══════════════════════════════════════════ -->
 <!-- PROJECT 2 -->
 <!-- ══════════════════════════════════════════ -->
@@ -667,7 +697,8 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
 
 <script>
 // ─── LANGUAGE ───
-let currentLang='en';
+const browserLang=navigator.language||navigator.userLanguage;
+let currentLang=browserLang.startsWith('zh')?'zh':'en';
 function toggleLang(){
   currentLang=currentLang==='en'?'zh':'en';
   document.documentElement.setAttribute('data-lang',currentLang);
@@ -675,7 +706,12 @@ function toggleLang(){
   document.querySelectorAll('[data-lang-zh]').forEach(el=>{el.style.display=currentLang==='zh'?'':'none'});
   document.querySelector('.lang-toggle').textContent=currentLang==='en'?'中文':'EN';
 }
-
+document.addEventListener('DOMContentLoaded',()=>{
+  document.documentElement.setAttribute('data-lang',currentLang);
+  document.querySelectorAll('[data-lang-en]').forEach(el=>el.style.display=currentLang==='en'?'':'none');
+  document.querySelectorAll('[data-lang-zh]').forEach(el=>el.style.display=currentLang==='zh'?'':'none');
+  document.getElementById('lang-btn').textContent=currentLang==='en'?'中文':'EN';
+});
 // ─── PAGE ROUTING ───
 function showPage(page, scrollTo){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -720,24 +756,20 @@ const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(e
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 // ─── FLOATING BACK ───
-const floatBackPages=['portrait','street','commercial','project-1','project-2'];
 const floatBackTarget={portrait:'home',street:'home',commercial:'home','project-1':'commercial','project-2':'commercial'};
-let currentPage='home';
-
-const _origShowPage=showPage;
-showPage=function(page,scrollTo){
-  currentPage=page;
-  _origShowPage(page,scrollTo);
-};
 
 function floatBackClick(){
-  showPage(floatBackTarget[currentPage]||'home');
+  const active=document.querySelector('.page.active');
+  const page=active?active.id.replace('page-',''):'home';
+  showPage(floatBackTarget[page]||'home');
 }
 
 window.addEventListener('scroll',()=>{
   const btn=document.getElementById('floatBack');
-  const show=floatBackPages.includes(currentPage)&&window.scrollY>300;
-  btn.classList.toggle('visible',show);
+  const active=document.querySelector('.page.active');
+  const page=active?active.id.replace('page-',''):'home';
+  const floatBackPages=['portrait','street','commercial','project-1','project-2'];
+  btn.classList.toggle('visible',floatBackPages.includes(page)&&window.scrollY>300);
 });
 // ─── LIGHTBOX ───
 function openLightbox(item){
