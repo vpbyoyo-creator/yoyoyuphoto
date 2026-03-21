@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>YOYOYU — Photography</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
+  --font-display:var(--font-display-en);
+  --font-body:var(--font-body-en);
   --bg:#0a0a0a;
   --bg-elevated:#111;
   --bg-card:#0f0f0f;
@@ -16,16 +18,51 @@
   --text-muted:#7a756e;
   --accent:#c8a87c;
   --accent-dim:#8a7455;
-  --font-display:'Cormorant Garamond',serif;
-  --font-body:'DM Mono',monospace;
-  --font-cjk:'Noto Sans TC',sans-serif;
+  --font-display-en:'Cormorant Garamond', serif;
+  --font-body-en:'DM Mono', monospace;
+  --font-display-zh:'Noto Serif TC', serif;
+  --font-body-zh:'Noto Sans TC', sans-serif;
   --grain:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
 }
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:300;line-height:1.6;min-height:100vh}
 body::after{content:'';position:fixed;inset:0;background:var(--grain);pointer-events:none;z-index:9999}
 ::selection{background:var(--accent);color:var(--bg)}
+html[data-lang='zh']{
+  --font-display:var(--font-display-zh);
+  --font-body:var(--font-body-zh);
+}
+html[data-lang='zh'] .hero h1,
+html[data-lang='zh'] .page-header h1,
+html[data-lang='zh'] .service-card h3,
+html[data-lang='zh'] .home-contact h2,
+html[data-lang='zh'] .gallery-overlay .photo-title,
+html[data-lang='zh'] .lightbox-info .photo-title{
+  font-weight:300;
+  letter-spacing:-0.01em;
+}
 
+html[data-lang='zh'] .hero h1,
+html[data-lang='zh'] .page-header h1{
+  font-size:clamp(3.2rem,8.2vw,7.2rem);
+}
+
+html[data-lang='zh'] .project-name{
+  font-weight:300;
+  font-size:1.65rem;
+  line-height:1.26;
+  letter-spacing:0.035em;
+}
+
+html[data-lang='zh'] .service-card h3,
+html[data-lang='zh'] .home-contact h2{
+  font-size:0.92em;
+}
+html[data-lang='zh'] .logo,
+html[data-lang='zh'] #page-home .hero h1{
+  font-family:var(--font-display-en);
+  font-weight:300;
+}
 /* ─── NAV ─── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -467,12 +504,35 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
       <p><span data-lang-en>The poetry of everyday urban life, captured in passing.</span><span data-lang-zh style="display:none">日常城市生活的詩意，在擦肩而過之間捕捉。</span></p>
     </div>
     <div class="gallery">
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1517713982677-4b66332f98de?w=600&q=80" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Crosswalk</span><span data-lang-zh style="display:none">斑馬線</span></div><div class="photo-meta">Taipei — 2025</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1494783367193-149034c05e8f?w=600&q=80" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Neon Alley</span><span data-lang-zh style="display:none">霓虹巷弄</span></div><div class="photo-meta">Tokyo — 2025</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1531219572328-a0171b4448a3?w=600&q=80" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Morning Market</span><span data-lang-zh style="display:none">晨市</span></div><div class="photo-meta">Taipei — 2024</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Skyline</span><span data-lang-zh style="display:none">天際線</span></div><div class="photo-meta">Hong Kong — 2024</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1551641506-ee5bf4cb45f1?w=600&q=80" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Rain Station</span><span data-lang-zh style="display:none">雨中車站</span></div><div class="photo-meta">Kyoto — 2025</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=600&q=80" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>After Hours</span><span data-lang-zh style="display:none">夜歸</span></div><div class="photo-meta">New York — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street1.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street1</span><span data-lang-zh style="display:none">Street1</span></div><div class="photo-meta">Keelung — 2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street2.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street2</span><span data-lang-zh style="display:none">Street2</span></div><div class="photo-meta">Keelung — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street3.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street3</span><span data-lang-zh style="display:none">Street3</span></div><div class="photo-meta">Keelung — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street4.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street4</span><span data-lang-zh style="display:none">Street4</span></div><div class="photo-meta">Taoyuan — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street5.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street5</span><span data-lang-zh style="display:none">Street5</span></div><div class="photo-meta">Keelung — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street6.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street6</span><span data-lang-zh style="display:none">Street6</span></div><div class="photo-meta">New Taipei — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street7.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street7</span><span data-lang-zh style="display:none">Street7</span></div><div class="photo-meta">Keelung — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street8.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street8</span><span data-lang-zh style="display:none">Street8</span></div><div class="photo-meta">Keelung — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street9.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street9</span><span data-lang-zh style="display:none">Street9</span></div><div class="photo-meta">Keelung — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street10.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street10</span><span data-lang-zh style="display:none">Street10</span></div><div class="photo-meta">Keelung — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street11.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street11</span><span data-lang-zh style="display:none">Street11</span></div><div class="photo-meta">Keelung — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street12.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street12</span><span data-lang-zh style="display:none">Street12</span></div><div class="photo-meta">Keelung — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street13.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street13</span><span data-lang-zh style="display:none">Street13</span></div><div class="photo-meta">Keelung — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street14.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street14</span><span data-lang-zh style="display:none">Street14</span></div><div class="photo-meta">Keelung — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street15.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street15</span><span data-lang-zh style="display:none">Street15</span></div><div class="photo-meta">Keelung — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street16.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street16</span><span data-lang-zh style="display:none">Street16</span></div><div class="photo-meta">Keelung — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street17.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street17</span><span data-lang-zh style="display:none">Street17</span></div><div class="photo-meta">Keelung — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street18.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street18</span><span data-lang-zh style="display:none">Street18</span></div><div class="photo-meta">Keelung — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street19.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street19</span><span data-lang-zh style="display:none">Street19</span></div><div class="photo-meta">Taipei — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street20.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street20</span><span data-lang-zh style="display:none">Street20</span></div><div class="photo-meta">Taipei — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street21.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street21</span><span data-lang-zh style="display:none">Street21</span></div><div class="photo-meta">Taipei — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street22.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street22</span><span data-lang-zh style="display:none">Street22</span></div><div class="photo-meta">Taipei — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street23.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street23</span><span data-lang-zh style="display:none">Street23</span></div><div class="photo-meta">Taipei — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street24.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street24</span><span data-lang-zh style="display:none">Street24</span></div><div class="photo-meta">Taipei — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street25.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street25</span><span data-lang-zh style="display:none">Street25</span></div><div class="photo-meta">Taipei — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street26.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street26</span><span data-lang-zh style="display:none">Street26</span></div><div class="photo-meta">Keelung — 2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street27.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street27</span><span data-lang-zh style="display:none">Street27</span></div><div class="photo-meta">New Taipei — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street28.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street28</span><span data-lang-zh style="display:none">Street28</span></div><div class="photo-meta">Keelung — 2024</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/str/street29.jpg" alt="Street" loading="lazy"><div class="gallery-overlay"><div class="photo-title"><span data-lang-en>Street29</span><span data-lang-zh style="display:none">Street29</span></div><div class="photo-meta">Keelung — 2025</div></div></div>
     </div>
   </div>
   <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
@@ -525,13 +585,18 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
     <div class="gallery-header">
       <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem"><span data-lang-en>Lexus | Condé Nast TAIWAN</span><span data-lang-zh style="display:none">Lexus | Condé Nast TAIWAN</span></p>
       <h1><span data-lang-en>Lifestyle Editorial</span><span data-lang-zh style="display:none">生活風格編輯拍攝</span></h1>
-      <p><span data-lang-en>A visual identity campaign capturing the essence of the brand through lifestyle and portrait photography.</span><span data-lang-zh style="display:none">透過生活風格與人像攝影，捕捉品牌精髓的視覺識別企劃。</span></p>
+      <p><span data-lang-en>A lifestyle editorial series for Lexus, shaped through atmosphere, detail, and companion-driven storytelling.</span><span data-lang-zh style="display:none">為 Lexus 拍攝的生活風格編輯影像系列，透過氛圍、細節與陪伴感敘事構成畫面。</span></p>
     </div>
     <div class="gallery">
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus1.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Campaign 01</div><div class="photo-meta">2025</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Campaign 02</div><div class="photo-meta">2025</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1605902711622-cfb43c4437b5?w=600&q=80" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Campaign 03</div><div class="photo-meta">2025</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Campaign 04</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus1.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 01</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus2.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 02</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus3.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 03</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus4.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 04</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus5.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 05</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus6.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 06</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus7.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 07</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus8.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 08</div><div class="photo-meta">2026</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/lexus9.jpg" alt="Project 1" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Meet My Roomates 09</div><div class="photo-meta">2026</div></div></div>
     </div>
   </div>
   <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
@@ -549,13 +614,18 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
     <div class="gallery-header">
       <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem"><span data-lang-en>vivo | Condé Nast TAIWAN</span><span data-lang-zh style="display:none">vivo | Condé Nast TAIWAN</span></p>
       <h1><span data-lang-en>Brand Collaboration</span><span data-lang-zh style="display:none">品牌合作拍攝</span></h1>
-      <p><span data-lang-en>Interior and culinary photography for a fine dining experience.</span><span data-lang-zh style="display:none">為高級餐飲體驗拍攝的空間與料理攝影。</span></p>
+      <p><span data-lang-en>A brand collaboration with vivo, using mobile photography to capture urban rhythm and everyday scenes.</span><span data-lang-zh style="display:none">與 vivo 合作的品牌攝影系列，以手機攝影捕捉城市節奏與日常場景。</span></p>
     </div>
     <div class="gallery">
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Interior 01</div><div class="photo-meta">2025</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Dish 01</div><div class="photo-meta">2025</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Space 01</div><div class="photo-meta">2025</div></div></div>
-      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">Detail 01</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/vivo1.jpg" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">vivo X300 Pro 01</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/vivo2.jpg" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">vivo X300 Pro 02</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/vivo3.jpg" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">vivo X300 Pro 03</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/vivo4.jpg" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">vivo X300 Pro 04</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/vivo5.jpg" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">vivo X300 Pro 05</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/vivo6.jpg" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">vivo X300 Pro 06</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/vivo7.jpg" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">vivo X300 Pro 07</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/vivo8.jpg" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">vivo X300 Pro 08</div><div class="photo-meta">2025</div></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="images/com/vivo9.jpg" alt="Project 2" loading="lazy"><div class="gallery-overlay"><div class="photo-title">vivo X300 Pro 09</div><div class="photo-meta">2025</div></div></div>
     </div>
   </div>
   <footer><span>© 2026 YOYOYU</span><span><span data-lang-en>All rights reserved</span><span data-lang-zh style="display:none">版權所有</span></span></footer>
