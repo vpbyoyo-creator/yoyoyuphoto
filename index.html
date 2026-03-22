@@ -380,19 +380,63 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
 }
 /* ─── FLOATING BACK ─── */
 .float-back{
-  position:fixed;bottom:10rem;left:30rem;z-index:99;
-  display:flex;align-items:center;gap:0.6rem;
-  font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;
-  color:var(--text-muted);background:rgba(10,10,10,0.85);
-  border:1px solid rgba(255,255,255,0.1);
-  padding:0.7rem 1.2rem;border-radius:2px;
-  cursor:pointer;backdrop-filter:blur(8px);
-  opacity:0;pointer-events:none;
-  transition:all 0.3s ease;
+  position: fixed;
+  bottom: 10rem;
+
+  /* 跟著置中的 gallery 外側走，不用寫死 left */
+  left: calc((100vw - min(1400px, calc(100vw - 6rem))) / 2 - 5.5rem);
+
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: rgba(10,10,10,0.85);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 0.7rem 1.2rem;
+  border-radius: 2px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
 }
-.float-back.visible{opacity:1;pointer-events:auto}
-.float-back:hover{color:var(--accent);border-color:var(--accent)}
-.float-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5}
+
+.float-back.visible{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.float-back:hover{
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.float-back svg{
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+/* 較窄桌機：退回左側安全位置，避免壓到作品 */
+@media (max-width: 1600px){
+  .float-back{
+    left: 1.5rem;
+  }
+}
+
+/* tablet / mobile 不顯示 */
+@media (max-width: 1024px){
+  .float-back{
+    display: none !important;
+  }
+}
 </style>
 </head>
 <body>
