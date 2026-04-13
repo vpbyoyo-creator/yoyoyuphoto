@@ -764,17 +764,29 @@ let currentLang=browserLang.startsWith('zh')?'zh':'en';
 function toggleLang(){
   currentLang=currentLang==='en'?'zh':'en';
   document.documentElement.setAttribute('data-lang',currentLang);
-  document.documentElement.lang=currentLang==='zh'?'zh-Hant':'en';
+  document.documentElement.setAttribute('lang',currentLang==='zh'?'zh-Hant':'en');
   document.querySelectorAll('[data-lang-en]').forEach(el=>{el.style.display=currentLang==='en'?'':'none'});
   document.querySelectorAll('[data-lang-zh]').forEach(el=>{el.style.display=currentLang==='zh'?'':'none'});
   document.querySelector('.lang-toggle').textContent=currentLang==='en'?'中文':'EN';
 }
 document.addEventListener('DOMContentLoaded',()=>{
   document.documentElement.setAttribute('data-lang',currentLang);
-  document.documentElement.lang=currentLang==='zh'?'zh-Hant':'en';
   document.querySelectorAll('[data-lang-en]').forEach(el=>el.style.display=currentLang==='en'?'':'none');
   document.querySelectorAll('[data-lang-zh]').forEach(el=>el.style.display=currentLang==='zh'?'':'none');
   document.getElementById('lang-btn').textContent=currentLang==='en'?'中文':'EN';
+  // 等 justfont 載入完成後才同步 lang 屬性，避免干擾字型載入
+  var _langObs=new MutationObserver(function(){
+    if(document.documentElement.classList.contains('jf-active')){
+      document.documentElement.setAttribute('lang',currentLang==='zh'?'zh-Hant':'en');
+      _langObs.disconnect();
+    }
+  });
+  _langObs.observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+  // 如果 justfont 3 秒內沒載入完成，也設定 lang（針對行動端 fallback）
+  setTimeout(function(){
+    document.documentElement.setAttribute('lang',currentLang==='zh'?'zh-Hant':'en');
+    _langObs.disconnect();
+  },3000);
 });
 // ─── PAGE ROUTING ───
 function showPage(page, scrollTo){
