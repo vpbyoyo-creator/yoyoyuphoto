@@ -761,27 +761,23 @@ footer{padding:3rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;jus
 // ─── LANGUAGE ───
 const browserLang=navigator.language||navigator.userLanguage;
 let currentLang=browserLang.startsWith('zh')?'zh':'en';
-function updateLang(){
+function toggleLang(){
+  currentLang=currentLang==='en'?'zh':'en';
   document.documentElement.setAttribute('data-lang',currentLang);
   document.querySelectorAll('[data-lang-en]').forEach(el=>{el.style.display=currentLang==='en'?'':'none'});
   document.querySelectorAll('[data-lang-zh]').forEach(el=>{el.style.display=currentLang==='zh'?'':'none'});
-  // 幫 display 字型的元素加/移除 justfont CSS class，讓 justfont 能正確 subset
-  document.querySelectorAll('.gallery-header h1, .home-about-text h2, .service-card h3, .home-contact h2').forEach(el=>{
-    if(currentLang==='zh') el.classList.add('rixingsong-semibold');
-    else el.classList.remove('rixingsong-semibold');
-  });
-}
-function toggleLang(){
-  currentLang=currentLang==='en'?'zh':'en';
-  updateLang();
-  document.documentElement.setAttribute('lang',currentLang==='zh'?'zh-Hant':'en');
   document.querySelector('.lang-toggle').textContent=currentLang==='en'?'中文':'EN';
-  if(typeof _jf!=='undefined'&&_jf.flush) _jf.flush();
 }
 document.addEventListener('DOMContentLoaded',()=>{
-  updateLang();
+  document.documentElement.setAttribute('data-lang',currentLang);
+  document.querySelectorAll('[data-lang-en]').forEach(el=>el.style.display=currentLang==='en'?'':'none');
+  document.querySelectorAll('[data-lang-zh]').forEach(el=>el.style.display=currentLang==='zh'?'':'none');
   document.getElementById('lang-btn').textContent=currentLang==='en'?'中文':'EN';
-  // 等 justfont 載入完成後才同步 lang，避免干擾字型載入
+  // 幫中文大標加上 justfont CSS class，讓 justfont 在行動端能正確 subset
+  if(currentLang==='zh'){
+    document.querySelectorAll('.gallery-header h1, .home-about-text h2, .service-card h3, .home-contact h2').forEach(el=>el.classList.add('rixingsong-semibold'));
+  }
+  // 等 justfont 載入完成後才同步 lang 屬性
   var _langObs=new MutationObserver(function(){
     if(document.documentElement.classList.contains('jf-active')){
       document.documentElement.setAttribute('lang',currentLang==='zh'?'zh-Hant':'en');
